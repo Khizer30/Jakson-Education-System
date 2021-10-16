@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-PK">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Website</title>
+    <title> JES Franchise Application Form </title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap">
@@ -37,12 +38,21 @@
             </div>
         </nav>
     </header>
+    
     <section style="margin-right: 10px;margin-left: 10px;font-family: ABeeZee, sans-serif;text-align: center;">
         <p style="font-weight: bold;font-size: 30px;">Franchise Application Form</p>
-        <form style="background: var(--bs-yellow);">
-            <p style="min-height: 30px;"></p><input class="form-control" type="text" placeholder="Full Name" name="name" autofocus="" autocomplete="off" required="" maxlength="26" style="margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;"><input class="form-control" type="email" name="email" placeholder="Email" autocomplete="off" inputmode="email" required="" maxlength="320" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;"><input class="form-control" type="tel" placeholder="Contact No." name="contact" autocomplete="off" inputmode="tel" required="" minlength="11" maxlength="11" pattern="[0-9]{11}" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;"><input class="form-control" type="text" name="city" placeholder="City" autocomplete="off" required="" maxlength="20" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;"><textarea class="form-control" style="width: 300px;margin-top: 10px;margin-bottom: 10px;margin-left: 16px;font-size: 17px;" name="message" placeholder="Message" rows="5" autocomplete="off" spellcheck="true" required="" maxlength="500"></textarea><button class="btn btn-primary" type="submit" style="width: 135px;height: 35px;margin-top: 10px;margin-bottom: 30px;border-style: none;background: var(--bs-blue);color: var(--bs-light);font-size: 15px;font-family: ABeeZee, sans-serif;">Submit</button>
+        <form id="applyForm" style="background: var(--bs-yellow);">
+            <p style="min-height: 30px;"> </p>
+            <p hidden style="min-height: 30px;width: 50%;margin-left: 25%;background: rgb(255, 255, 255);border-style: solid;border-color: var(--bs-dark);color: var(--bs-red);font-size: 17px;font-weight: bold;"> Invalid Input! </p>
+            <input id="name" class="form-control" type="text" placeholder="Full Name" name="name" autofocus="" autocomplete="off" required="" maxlength="26" style="margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
+            <input id="email" class="form-control" type="email" name="email" placeholder="Email" autocomplete="off" inputmode="email" required="" maxlength="320" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
+            <input id="contact" class="form-control" type="tel" placeholder="Contact No." name="contact" autocomplete="off" inputmode="tel" required="" minlength="11" maxlength="11" pattern="[0-9]{11}" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
+            <input id="city" class="form-control" type="text" name="city" placeholder="City" autocomplete="off" required="" maxlength="20" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
+            <textarea id="message" class="form-control" style="width: 300px;margin-top: 10px;margin-bottom: 10px;margin-left: 16px;font-size: 17px;" name="message" placeholder="Message" rows="5" autocomplete="off" spellcheck="true" required="" maxlength="500"> </textarea>
+            <button onclick="" class="btn btn-primary" type="submit" style="width: 135px;height: 35px;margin-top: 10px;margin-bottom: 30px;border-style: none;background: var(--bs-blue);color: var(--bs-light);font-size: 15px;font-family: ABeeZee, sans-serif;"> Submit </button>
         </form>
     </section>
+    
     <footer style="background: var(--bs-gray-dark);font-family: ABeeZee, sans-serif;color: #8e9aa6;height: 180px;">
         <p class="text-uppercase" style="padding-top: 15px;color: var(--bs-light);font-size: 15px;">&nbsp; &nbsp; &nbsp;Get In Touch</p>
         <p style="font-size: 13px;margin-right: 10px;margin-left: 10px;margin-top: -10px;">&nbsp; &nbsp; &nbsp;<i class="fa fa-map-marker" style="color: var(--bs-light);"></i>&nbsp; &nbsp;Office # 304, Falcon Heights, Civic Center, Phase IV, Bahria Town, Islamabad<br></p>
@@ -50,6 +60,7 @@
         <p style="font-size: 13px;margin-right: 10px;margin-left: 10px;margin-top: -10px;">&nbsp; &nbsp; &nbsp;<i class="fa fa-envelope" style="color: var(--bs-light);"></i>&nbsp; &nbsp;info@jes.org.pk</p>
         <p style="text-align: center;font-size: 12px;margin-right: 10px;margin-left: 10px;margin-top: 20px;">@ JES 2018 All Rights Reserved</p>
     </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

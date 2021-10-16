@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title> JES Adopt </title>
+    <title> JES Adopt a Child </title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
@@ -42,9 +42,9 @@
     <section style="margin-right: 10px;margin-left: 10px;text-align: center;font-family: ABeeZee, sans-serif;">
         <p style="font-weight: bold;font-size: 30px;text-align: center;"> Adopt a Child </p>
         <p style="font-size: 17px;text-align: justify;"> We at JES support education of children of underprivileged class. You are welcome to donate in the noble cause and help us in building the future of the poor kids by our Own A Child Program. You can own a child by donating a minimal amount of 480 US dollars as his tuition fee per annum and educational stuff expenses. </p>
-        <form style="background: var(--bs-yellow);">
+        <form id="adoptForm" style="background: var(--bs-yellow);">
             <p style="min-height: 30px;"> </p>
-            <p class="form-control"> Invalid Input </p>
+            <p hidden style="min-height: 30px;width: 50%;margin-left: 25%;background: rgb(255, 255, 255);border-style: solid;border-color: var(--bs-dark);color: var(--bs-red);font-size: 17px;font-weight: bold;"> Invalid Input! </p>
             <input id="name" class="form-control" type="text" placeholder="Full Name" name="name" autofocus="" autocomplete="off" required="" maxlength="26" style="margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
             <input id="email" class="form-control" type="email" name="email" placeholder="Email" autocomplete="off" inputmode="email" required="" maxlength="320" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
             <input id="contect" class="form-control" type="tel" placeholder="Contact No." name="contact" autocomplete="off" inputmode="tel" required="" minlength="11" maxlength="11" pattern="[0-9]{11}" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
