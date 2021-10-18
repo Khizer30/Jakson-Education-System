@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title> JES Adopt a Child </title>
 
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">  
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap">
@@ -13,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js"></script>
 </head>
 
 <body>
@@ -44,13 +47,13 @@
         <p style="font-size: 17px;text-align: justify;"> We at JES support education of children of underprivileged class. You are welcome to donate in the noble cause and help us in building the future of the poor kids by our Own A Child Program. You can own a child by donating a minimal amount of 480 US dollars as his tuition fee per annum and educational stuff expenses. </p>
         <form id="adoptForm" style="background: var(--bs-yellow);">
             <p style="min-height: 30px;"> </p>
-            <p hidden style="min-height: 30px;width: 50%;margin-left: 25%;background: rgb(255, 255, 255);border-style: solid;border-color: var(--bs-dark);color: var(--bs-red);font-size: 17px;font-weight: bold;"> Invalid Input! </p>
-            <input id="name" class="form-control" type="text" placeholder="Full Name" name="name" autofocus="" autocomplete="off" required="" maxlength="26" style="margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
-            <input id="email" class="form-control" type="email" name="email" placeholder="Email" autocomplete="off" inputmode="email" required="" maxlength="320" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
-            <input id="contect" class="form-control" type="tel" placeholder="Contact No." name="contact" autocomplete="off" inputmode="tel" required="" minlength="11" maxlength="11" pattern="[0-9]{11}" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
-            <input id="number" class="form-control" type="number" style="width: 300px;margin-top: 10px;margin-bottom: 10px;margin-left: 16px;font-size: 17px;" name="number" max="15" placeholder="No. of Child to Adopt" required="">
-            <textarea id="message" class="form-control" style="width: 300px;margin-top: 10px;margin-bottom: 10px;margin-left: 16px;font-size: 17px;" name="message" placeholder="Message" rows="5" autocomplete="off" spellcheck="true" required="" maxlength="500"> </textarea>
-            <button onclick="" class="btn btn-primary" type="button" style="width: 135px;height: 35px;margin-top: 10px;margin-bottom: 30px;border-style: none;background: var(--bs-blue);color: var(--bs-light);font-size: 15px;font-family: ABeeZee, sans-serif;"> Submit </button>
+            <p id="error3" class="errorText"> <br> </p>
+            <input id="name3" class="form-control" type="text" placeholder="Full Name" name="name" autofocus="" autocomplete="off" required="" maxlength="26" style="margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
+            <input id="email3" class="form-control" type="email" name="email" placeholder="Email" autocomplete="off" inputmode="email" required="" maxlength="320" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
+            <input id="contact3" class="form-control" type="tel" placeholder="Contact No." name="contact" autocomplete="off" inputmode="tel" required="" minlength="11" maxlength="11" pattern="[0-9]{11}" style="margin-top: 10px;margin-bottom: 10px;width: 300px;margin-left: 16px;font-size: 17px;">
+            <input id="number3" class="form-control" type="number" style="width: 300px;margin-top: 10px;margin-bottom: 10px;margin-left: 16px;font-size: 17px;" name="number" max="9" placeholder="No. of Child to Adopt" required="">
+            <textarea id="message3" class="form-control" style="width: 300px;margin-top: 10px;margin-bottom: 10px;margin-left: 16px;font-size: 17px;" name="message" placeholder="Message" rows="5" autocomplete="off" spellcheck="true" required="" maxlength="500"> </textarea>
+            <button onclick="sendAdopt()" class="btn btn-primary" type="button" style="width: 135px;height: 35px;margin-top: 10px;margin-bottom: 30px;border-style: none;background: var(--bs-blue);color: var(--bs-light);font-size: 15px;font-family: ABeeZee, sans-serif;"> Submit </button>
         </form>
     </section>
     
@@ -65,7 +68,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
