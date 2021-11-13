@@ -11,11 +11,11 @@
 
       $name = json_decode($_POST["name"], false) ;
       $email = json_decode($_POST["email"], false) ;
-      $contact = json_decode($_POST["contact"], false) ;
+      $phone = json_decode($_POST["phone"], false) ;
       $city = json_decode($_POST["city"], false) ;
       $message = json_decode($_POST["message"], false) ;
 
-      if (!empty($name) && !empty($email) && !empty($contact) && !empty($city) && !empty($message))
+      if (!empty($name) && !empty($email) && !empty($phone) && !empty($city) && !empty($message))
       {
         $servername = "localhost" ;
         $username = "root" ;
@@ -28,8 +28,8 @@
           die("Connection Failed: " . mysqli_connect_error()) ;
         }
       
-        $sql = "INSERT INTO franchise (Name, Email, Contact, City, Message)
-        VALUES ('$name', '$email', '$contact', '$city', '$message') ;" ;
+        $sql = "INSERT INTO franchise (Name, Email, Phone, City, Message)
+        VALUES ('$name', '$email', '$phone', '$city', '$message') ;" ;
       
         if (mysqli_query($conn, $sql))
         {

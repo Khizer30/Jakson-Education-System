@@ -11,11 +11,11 @@
 
       $name = json_decode($_POST["name"], false) ;
       $email = json_decode($_POST["email"], false) ;
-      $contact = json_decode($_POST["contact"], false) ;
+      $phone = json_decode($_POST["phone"], false) ;
       $number = json_decode($_POST["number"], false) ;
       $message = json_decode($_POST["message"], false) ;
 
-      if (!empty($name) && !empty($email) && !empty($contact) && !empty($number) && !empty($message))
+      if (!empty($name) && !empty($email) && !empty($phone) && !empty($number) && !empty($message))
       {
         $servername = "localhost" ;
         $username = "root" ;
@@ -28,7 +28,7 @@
           die("Connection Failed: " . mysqli_connect_error()) ;
         }
       
-        $sql = "INSERT INTO adopt (Name, Email, Contact, Number, Message) VALUES ('$name', '$email', '$contact', '$number', '$message') ;" ;
+        $sql = "INSERT INTO adopt (Name, Email, Phone, Number, Message) VALUES ('$name', '$email', '$phone', '$number', '$message') ;" ;
       
         if (mysqli_query($conn, $sql))
         {

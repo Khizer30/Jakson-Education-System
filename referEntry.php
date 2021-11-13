@@ -11,12 +11,11 @@
 
       $name = json_decode($_POST["name"], false) ;
       $email = json_decode($_POST["email"], false) ;
-      $contact = json_decode($_POST["contact"], false) ;
+      $phone = json_decode($_POST["phone"], false) ;
       $childName = json_decode($_POST["childName"], false) ;
-      $childAge = json_decode($_POST["childAge"], false) ;
       $message = json_decode($_POST["message"], false) ;
 
-      if (!empty($name) && !empty($email) && !empty($contact) && !empty($childName) && !empty($childAge) && !empty($message))
+      if (!empty($name) && !empty($email) && !empty($phone) && !empty($childName) && !empty($message))
       {
         $servername = "localhost" ;
         $username = "root" ;
@@ -29,8 +28,8 @@
           die("Connection Failed: " . mysqli_connect_error()) ;
         }
       
-        $sql = "INSERT INTO refer (Name, Email, Contact, ChildName, ChildAge, Message) 
-        VALUES ('$name', '$email', '$contact', '$childName', '$childAge', '$message') ;" ;
+        $sql = "INSERT INTO refer (Name, Email, Phone, ChildName, Message) 
+        VALUES ('$name', '$email', '$phone', '$childName', '$message') ;" ;
       
         if (mysqli_query($conn, $sql))
         {
