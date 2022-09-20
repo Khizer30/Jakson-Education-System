@@ -122,6 +122,7 @@ function Add(): JSX.Element
         setWarn(true) ;
       }
 
+      setInputs(studentObj) ;
       setMessage(res.message) ;
     }
   }
@@ -192,8 +193,8 @@ function Add(): JSX.Element
             </div>
 
             <div className="form-floating mb-3 mt-3">
-              <select name="grade" onChange={ handleChange } required className="form-select textInput">
-                <option value="NULL" className="bold displayNone"> Select The Grade </option>
+              <select name="grade" value={ inputs.grade } onChange={ handleChange } required className="form-select textInput">
+                <option value="NULL" disabled className="bold displayNone"> Select The Grade </option>
               {
                 grades.map(gradesMapper)
               }

@@ -12,12 +12,22 @@
 
 .navLink 
 {
-  font-family: Epilogue, sans-serif ;
+  font-family: Oxygen, sans-serif ;
+  font-weight: bold ;
   font-size: 1em ;
   color: rgb(40,45,60) !important ;
   text-align: right ;
   padding: 0.5rem ;
   padding-right: 1rem !important ;
+
+  transition: all ;
+  transition-duration: 300ms ;
+  transition-timing-function: ease ;
+}
+
+.navLink:hover
+{
+  transform: scale(0.95) ;
 }
 
 .navLine
@@ -101,6 +111,14 @@ body
 {
   background: rgb(250,150,30) ;
   transform: scale(1.05) ;
+  outline: none ;
+}
+
+.mainBtn:focus
+{
+  background: rgb(250,150,30) ;
+  transform: scale(1.05) ;
+  outline: none ;
 }
 
 .mainBtn:active

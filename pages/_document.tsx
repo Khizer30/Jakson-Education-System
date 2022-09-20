@@ -1,7 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document" ;
 import Script from "next/script" ;
-// ...
-import Navbar from "../components/Navbar" ;
 
 // Document
 function Document(): JSX.Element
@@ -13,7 +11,6 @@ function Document(): JSX.Element
         <meta name="author" content="Syed Muhammad Khizer" />
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Epilogue&amp;display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen&amp;display=swap" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" />
       
@@ -22,8 +19,6 @@ function Document(): JSX.Element
       </Head>
 
       <body>
-        <Navbar />
-        
         <Main />
         <NextScript />
 

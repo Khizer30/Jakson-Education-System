@@ -6,6 +6,7 @@ interface Student
   reg: string ;
   grade: string ;
   fees: number  ;
+  arrears: number ;
 }
 
 // Student Object
@@ -15,7 +16,8 @@ const studentObj: Student =
   father: "",
   reg: "",
   grade: "NULL",
-  fees: 0
+  fees: 0,
+  arrears: 0
 } ;
 
 // Res Interface
@@ -29,13 +31,9 @@ interface Res
 const grades: string[] = ["Playgroup", "Nursery", "KG", "Grade I", "Grade II", "Grade III", "Grade IV", "Grade V", "Grade VI"] ;
 
 // Grades Mapper
-function gradesMapper(x: string, i: number): JSX.Element
+function gradesMapper(x: string): JSX.Element
 {
-  return (
-  <>
-    <option value={ x } key={ i } className="bold"> { x } </option>
-  </>
-  )
+  return ( <option key={ x } value={ x } className="bold"> { x } </option> )
 }
 
 // Check Input

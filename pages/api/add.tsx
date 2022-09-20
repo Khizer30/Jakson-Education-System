@@ -15,10 +15,16 @@ export default async function add(req: NextApiRequest, res: NextApiResponse): Pr
   checkInput(data.grade, 50) &&
   checkNumber(data.fees))
   {
-    let docRef: FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData> = db.collection("JES").doc("Student Record").collection(data.grade).doc(data.name) ;
-    await docRef.set({ father: data.father, reg: data.reg, fees: data.fees }) ;
-    
-    res.end(createResponse(100, `${ data.name } Added To Database!`)) ;
+    try
+    {
+      let docRef: FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData> = db.collection("JES").doc("Student Record").collection(data.grade).doc(data.name) ;
+      await docRef.set({ father: data.father, reg: data.reg, fees: +data.fees, arrears: data.arrears }) ;
+      res.end(createResponse(100, `${ data.name } Added To Database!`)) ;
+    }
+    catch
+    {
+      res.end(createResponse(400, "Error Connecting To Firebase!")) ;
+    }
   }
   else
   {

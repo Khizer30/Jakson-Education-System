@@ -8,7 +8,9 @@ function Navbar(): JSX.Element
     <nav className="navbar navbar-light navbar-expand-xxl navLine">
       <div className="container-fluid">
         <div className="navbar-brand">
-          <img src="/images/logo.webp" alt="JES Logo" title="Jakson Education System" loading="eager" draggable="false" className="navImg scaler" />
+          <Link href="/">
+            <img src="/images/logo.webp" alt="JES Logo" title="Jakson Education System" loading="eager" draggable="false" className="navImg scaler" />
+          </Link>
         </div>
 
         <button className="navbar-toggler blueColor scaler" data-bs-toggle="collapse" data-bs-target="#navCol">
@@ -19,23 +21,27 @@ function Navbar(): JSX.Element
         <div className="collapse navbar-collapse" id="navCol">
           <ul className="navbar-nav ms-auto">
 
-            <li className="nav-item navLink hoverBold">
+            <li className="nav-item navLink">
+              <Link href="/"> Home </Link>
+            </li>
+
+            <li className="nav-item navLink">
               <Link href="/print"> Print Challan </Link>
             </li>
 
-            <li className="nav-item navLink hoverBold">
+            <li className="nav-item navLink">
               <Link href="/add"> Add Student </Link>
             </li>
 
-            <li className="nav-item navLink hoverBold">
+            <li className="nav-item navLink">
               <Link href="/remove"> Remove Student </Link>
             </li>
 
-            <li className="nav-item navLink hoverBold">
+            <li className="nav-item navLink">
               <Link href="/edit"> Edit Student </Link>
             </li>
 
-            <li className="nav-item navLink hoverBold lastLink">
+            <li className="nav-item navLink lastLink">
               <Link href="/logout"> Log Out </Link>
             </li>
 
