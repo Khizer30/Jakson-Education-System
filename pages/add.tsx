@@ -1,10 +1,12 @@
 import { useState } from "react" ;
 import Head from "next/head" ;
+import Image from "next/image" ;
 import type React from "react" ;
 // ...
-import { studentObj, grades, gradesMapper, postAPI } from "../lib/Library" ;
+import { studentObj, grades, mapper, postAPI } from "../lib/Library" ;
 import Alert from "../components/Alert" ;
 import type { Student, Res } from "../lib/Library" ;
+import img from "../public/images/add.webp" ;
 
 // Add
 function Add(): JSX.Element
@@ -136,7 +138,7 @@ function Add(): JSX.Element
       <meta name="keywords" content="JES, Add, Student" />
     </Head>
 
-    <div className="container-fluid marginTB">
+    <div className="container-fluid mainMargin">
       <h1 className="heading"> Add Student to Database </h1>
       <div className="row minHeight">
         
@@ -196,7 +198,7 @@ function Add(): JSX.Element
               <select name="grade" value={ inputs.grade } onChange={ handleChange } required className="form-select textInput">
                 <option value="NULL" disabled className="bold displayNone"> Select The Grade </option>
               {
-                grades.map(gradesMapper)
+                grades.map(mapper)
               }
               </select>
               <label htmlFor="grade" className="textInput"> Grade* </label>
@@ -226,7 +228,16 @@ function Add(): JSX.Element
         </div>
 
         <div className="col-md-6 d-flex justify-content-center align-items-center marginTB">
-          <img src="/images/add.webp" alt="Image" loading="eager" draggable="false" className="width75 scaler" />
+          <div className="width75 scaler">
+            <Image
+              src={ img }
+              alt="Clipart"
+              layout="intrinsic"
+              placeholder="empty"
+              priority
+              draggable="false"
+            />
+          </div>
         </div>
 
       </div>

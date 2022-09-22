@@ -7,7 +7,7 @@
 
 .navImg
 {
-  width: 250px ;
+  width: 275px ;
 }
 
 .navLink 
@@ -67,6 +67,12 @@ body
 }
 
 /* Main */
+.mainMargin
+{
+  margin-top: 0.5vh !important ;
+  margin-bottom: 0.5vh !important ;
+}
+
 .heading 
 {
   text-align: center ;
@@ -198,6 +204,12 @@ a:hover
   margin-bottom: 0.5rem !important ;
 }
 
+.padTB 
+{
+  padding-top: 0.5vh !important ;
+  padding-bottom: 0.5vh !important ;
+}
+
 .width75
 {
   width: 75% !important ;
@@ -227,7 +239,78 @@ a:hover
   min-height: 70vh ;
 }
 
+.animationHeight 
+{
+  min-height: 77.5vh ;
+}
+
 .invisible
 {
   visibility: hidden ;
+}
+
+/* Animation */
+#blueHorizontal
+{
+  animation: moveLeft 1.5s ease-in infinite ;
+}
+
+@keyframes moveLeft
+{
+  0% { transform: translateX(0%) ; }
+  50% { transform: translateX(-25%) ; }
+  100% { transform: translateX(0%) ; }
+}
+
+#blueVertical
+{
+  animation: moveDown 1.5s ease-in infinite ;
+}
+
+@keyframes moveDown
+{
+  0% { transform: translateY(0%) ; }
+  50% { transform: translateY(25%) ; }
+  100% { transform: translateY(0%) ; }
+}
+
+#yellowHorizontal
+{
+  animation: moveRight 1.5s ease-in infinite ;
+}
+
+@keyframes moveRight
+{
+  0% { transform: translateX(0%) ; }
+  50% { transform: translateX(25%) ; }
+  100% { transform: translateX(0%) ; }
+}
+
+#yellowVertical
+{
+  animation: moveUp 1.5s ease-in infinite ;
+}
+
+@keyframes moveUp
+{
+  0% { transform: translateY(0%) ; }
+  50% { transform: translateY(-25%) ; }
+  100% { transform: translateY(0%) ; }
+}
+
+#red
+{
+  animation: blink 3s ease-in infinite ;
+}
+
+@keyframes blink 
+{
+	0%, 50%, 100% 
+  {
+		opacity: 1 ;
+	}
+	25%, 75% 
+  {
+		opacity: 0 ;
+	}
 }

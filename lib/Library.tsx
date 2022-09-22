@@ -20,6 +20,20 @@ const studentObj: Student =
   arrears: 0
 } ;
 
+// Remove Request Interface
+interface RemoveReq
+{
+  grade: string ;
+  name: string ;
+}
+
+// Remove Object
+const removeObj: RemoveReq =
+{
+  grade: "NULL",
+  name: "NULL"
+} ;
+
 // Res Interface
 interface Res
 {
@@ -27,11 +41,17 @@ interface Res
   message: string ;
 }
 
+// Props Interface
+interface Props
+{
+  data: string ;
+}
+
 // Grades
 const grades: string[] = ["Playgroup", "Nursery", "KG", "Grade I", "Grade II", "Grade III", "Grade IV", "Grade V", "Grade VI"] ;
 
-// Grades Mapper
-function gradesMapper(x: string): JSX.Element
+// Mapper
+function mapper(x: string): JSX.Element
 {
   return ( <option key={ x } value={ x } className="bold"> { x } </option> )
 }
@@ -132,5 +152,5 @@ function createResponse(code: number | string, message: string): string
 }
 
 // Exports
-export { studentObj, grades, gradesMapper, checkInput, checkNumber, getAPI, postAPI, createResponse } ;
-export type { Student, Res } ;
+export { studentObj, removeObj, grades, mapper, checkInput, checkNumber, getAPI, postAPI, createResponse } ;
+export type { Student, RemoveReq, Props, Res } ;

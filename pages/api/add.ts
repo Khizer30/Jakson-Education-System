@@ -5,7 +5,7 @@ import { checkInput, checkNumber, createResponse } from "../../lib/Library" ;
 import type { Student } from "../../lib/Library" ;
 
 // Add
-export default async function add(req: NextApiRequest, res: NextApiResponse): Promise<void>
+export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> =>
 {
   let data: Student = req.body ;
 
@@ -19,6 +19,7 @@ export default async function add(req: NextApiRequest, res: NextApiResponse): Pr
     {
       let docRef: FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData> = db.collection("JES").doc("Student Record").collection(data.grade).doc(data.name) ;
       await docRef.set({ father: data.father, reg: data.reg, fees: +data.fees, arrears: data.arrears }) ;
+      
       res.end(createResponse(100, `${ data.name } Added To Database!`)) ;
     }
     catch

@@ -1,16 +1,25 @@
 import Link from "next/link" ;
+import Image from "next/image" ;
+// ...
+import logo from "../public/images/logo.webp" ;
 
 // Navbar
 function Navbar(): JSX.Element
 {
   return (
   <>
-    <nav className="navbar navbar-light navbar-expand-xxl navLine">
+    <nav className="navbar navbar-light navbar-expand-xxl navLine padTB">
       <div className="container-fluid">
-        <div className="navbar-brand">
-          <Link href="/">
-            <img src="/images/logo.webp" alt="JES Logo" title="Jakson Education System" loading="eager" draggable="false" className="navImg scaler" />
-          </Link>
+        <div className="navbar-brand d-flex justify-content-center align-items-center navImg scaler">
+          <Image
+            src={ logo }
+            alt="JES Logo"
+            title="Jakson Education System"
+            layout="intrinsic"
+            placeholder="empty"
+            priority
+            draggable="false"
+          />
         </div>
 
         <button className="navbar-toggler blueColor scaler" data-bs-toggle="collapse" data-bs-target="#navCol">
