@@ -11,15 +11,19 @@ function Navbar(): JSX.Element
     <nav className="navbar navbar-light navbar-expand-xxl navLine padTB">
       <div className="container-fluid">
         <div className="navbar-brand d-flex justify-content-center align-items-center navImg scaler">
-          <Image
-            src={ logo }
-            alt="JES Logo"
-            title="Jakson Education System"
-            layout="intrinsic"
-            placeholder="empty"
-            priority
-            draggable="false"
-          />
+          <Link href="/">
+            <a>
+              <Image
+                src={ logo }
+                alt="JES Logo"
+                title="Jakson Education System"
+                layout="intrinsic"
+                placeholder="empty"
+                priority
+                draggable="false"
+              />
+            </a>
+          </Link>
         </div>
 
         <button className="navbar-toggler blueColor scaler" data-bs-toggle="collapse" data-bs-target="#navCol">
@@ -30,29 +34,29 @@ function Navbar(): JSX.Element
         <div className="collapse navbar-collapse" id="navCol">
           <ul className="navbar-nav ms-auto">
 
-            <li className="nav-item navLink">
-              <Link href="/"> Home </Link>
-            </li>
+            <Link href="/">
+              <a className="nav-item navLink"> Home </a>
+            </Link>
 
-            <li className="nav-item navLink">
-              <Link href="/print"> Print Challan </Link>
-            </li>
+            <Link href="/print">
+              <a className="nav-item navLink"> Print Challan </a>
+            </Link>
 
-            <li className="nav-item navLink">
-              <Link href="/add"> Add Student </Link>
-            </li>
+            <Link href="/add">
+              <a className="nav-item navLink"> Add Student </a>
+            </Link>
 
-            <li className="nav-item navLink">
-              <Link href="/remove"> Remove Student </Link>
-            </li>
+            <Link href="/remove">
+              <a className="nav-item navLink"> Remove Student </a>
+            </Link>
 
-            <li className="nav-item navLink">
-              <Link href="/edit"> Edit Student </Link>
-            </li>
+            <Link href="/edit">
+              <a className="nav-item navLink"> Edit Student </a>
+            </Link>
 
-            <li className="nav-item navLink lastLink">
-              <Link href="/logout"> Log Out </Link>
-            </li>
+            <Link href="/logout">
+              <a className="nav-item navLink lastLink"> Log Out </a>
+            </Link>
 
           </ul>
         </div>

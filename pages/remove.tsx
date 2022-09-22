@@ -166,7 +166,7 @@ function Remove(props: Props): JSX.Element
             <Alert message={ message } warn={ warn } />
 
             <div className="form-floating mb-3 mt-3">
-              <select name="grade" value={ inputs.grade } onChange={ handleChange } required className="form-select textInput">
+              <select name="grade" value={ inputs.grade } onChange={ handleChange } autoFocus required className="form-select textInput">
                 <option value="NULL" disabled className="bold displayNone"> Select The Grade </option>
               {
                 grades.map(mapper)

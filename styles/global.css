@@ -122,8 +122,6 @@ body
 
 .mainBtn:focus
 {
-  background: rgb(250,150,30) ;
-  transform: scale(1.05) ;
   outline: none ;
 }
 
@@ -158,6 +156,11 @@ p
 }
 
 h1
+{
+  cursor: default ;
+}
+
+h2
 {
   cursor: default ;
 }
@@ -313,4 +316,23 @@ a:hover
   {
 		opacity: 0 ;
 	}
+}
+
+/* 404 */
+.notFoundH1 
+{
+  font-family: Oxygen, sans-serif ;
+  font-weight: bold ;
+  font-size: 10em ;
+  text-align: center ;
+  color: rgb(250,150,30) ;
+}
+
+.notFoundH2 
+{
+  font-size: 3em ;
+  font-weight: bold ;
+  text-align: center ;
+  font-family: Oxygen, sans-serif ;
+  color: rgb(40,45,60) ;
 }
