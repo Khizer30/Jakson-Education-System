@@ -20,6 +20,17 @@ const studentObj: Student =
   arrears: 0
 } ;
 
+// Student Object 2
+const studentObj2: Student =
+{
+  name: "NULL",
+  father: "",
+  reg: "",
+  grade: "NULL",
+  fees: 0,
+  arrears: 0
+} ;
+
 // Remove Request Interface
 interface RemoveReq
 {
@@ -34,17 +45,33 @@ const removeObj: RemoveReq =
   name: "NULL"
 } ;
 
-// Res Interface
-interface Res
+// Get Request Interface
+interface GetReq
 {
-  code: number | string ;
-  message: string ;
+  grade: string ;
+  name: string ;
+}
+
+// Document Data Interface
+interface DocData
+{
+  father: string ;
+  reg: string ;
+  fees: number ;
+  arrears: number ;
 }
 
 // Props Interface
 interface Props
 {
   data: string ;
+}
+
+// Res Interface
+interface Res
+{
+  code: number | string ;
+  message: string ;
 }
 
 // Grades
@@ -95,16 +122,9 @@ function checkInput(it: string, len: number, reg?: string): boolean
 // Check Number
 function checkNumber(it: number): boolean
 {
-  if (it)
+  if ((it >= 0) && (it <= 99999))
   {
-    if ((it <= 99999) && (it >= 0))
-    {
-      return true ;
-    }
-    else
-    {
-      return false ;
-    }
+    return true ;
   }
   else
   {
@@ -152,5 +172,5 @@ function createResponse(code: number | string, message: string): string
 }
 
 // Exports
-export { studentObj, removeObj, grades, mapper, checkInput, checkNumber, getAPI, postAPI, createResponse } ;
-export type { Student, RemoveReq, Props, Res } ;
+export { studentObj, studentObj2, removeObj, grades, mapper, checkInput, checkNumber, getAPI, postAPI, createResponse } ;
+export type { Student, RemoveReq, GetReq, DocData, Props, Res } ;

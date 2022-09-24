@@ -12,7 +12,7 @@ function Navbar(): JSX.Element
       <div className="container-fluid">
         <div className="navbar-brand d-flex justify-content-center align-items-center navImg scaler">
           <Link href="/">
-            <a>
+            <a className="d-flex justify-content-center align-items-center">
               <Image
                 src={ logo }
                 alt="JES Logo"

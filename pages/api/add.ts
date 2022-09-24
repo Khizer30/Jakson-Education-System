@@ -13,12 +13,13 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
   checkInput(data.father, 50, "^[a-zA-Z].*[\s\.]*$") &&
   checkInput(data.reg, 50) &&
   checkInput(data.grade, 50) &&
-  checkNumber(data.fees))
+  checkNumber(data.fees) &&
+  checkNumber(data.arrears))
   {
     try
     {
       let docRef: FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData> = db.collection("JES").doc("Student Record").collection(data.grade).doc(data.name) ;
-      await docRef.set({ father: data.father, reg: data.reg, fees: +data.fees, arrears: data.arrears }) ;
+      await docRef.set({ father: data.father, reg: data.reg, fees: +data.fees, arrears: +data.arrears }) ;
       
       res.end(createResponse(100, `${ data.name } Added To Database!`)) ;
     }

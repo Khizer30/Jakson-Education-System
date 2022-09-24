@@ -253,69 +253,42 @@ a:hover
 }
 
 /* Animation */
-#blueHorizontal
+#Blue
 {
-  animation: moveLeft 1.5s ease-in infinite ;
+  animation: toRight1 1.5s ease-in infinite ;
 }
 
-@keyframes moveLeft
+#Yellow
+{
+  animation: toRight2 1.5s ease-in infinite ;
+}
+
+#Red
+{
+  animation: toRight3 1.5s ease-in infinite ;
+}
+
+@keyframes toRight1
 {
   0% { transform: translateX(0%) ; }
-  50% { transform: translateX(-25%) ; }
+  40%, 60% { transform: translateX(10%) ; }
   100% { transform: translateX(0%) ; }
 }
 
-#blueVertical
+@keyframes toRight2
 {
-  animation: moveDown 1.5s ease-in infinite ;
+  0% { transform: translateX(10%) ; }
+  25% { transform: translateX(0%) ; }
+  50% { transform: translateX(10%) ; }
+  75% { transform: translateX(0%) ; }
+  100% { transform: translateX(10%) ; }
 }
 
-@keyframes moveDown
+@keyframes toRight3
 {
-  0% { transform: translateY(0%) ; }
-  50% { transform: translateY(25%) ; }
-  100% { transform: translateY(0%) ; }
-}
-
-#yellowHorizontal
-{
-  animation: moveRight 1.5s ease-in infinite ;
-}
-
-@keyframes moveRight
-{
-  0% { transform: translateX(0%) ; }
-  50% { transform: translateX(25%) ; }
-  100% { transform: translateX(0%) ; }
-}
-
-#yellowVertical
-{
-  animation: moveUp 1.5s ease-in infinite ;
-}
-
-@keyframes moveUp
-{
-  0% { transform: translateY(0%) ; }
-  50% { transform: translateY(-25%) ; }
-  100% { transform: translateY(0%) ; }
-}
-
-#red
-{
-  animation: blink 3s ease-in infinite ;
-}
-
-@keyframes blink 
-{
-	0%, 50%, 100% 
-  {
-		opacity: 1 ;
-	}
-	25%, 75% 
-  {
-		opacity: 0 ;
-	}
+  0% { transform: translateX(10%) ; }
+  40%, 60% { transform: translateX(0%) ; }
+  100% { transform: translateX(10%) ; }
 }
 
 /* 404 */

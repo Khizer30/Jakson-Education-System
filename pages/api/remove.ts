@@ -9,8 +9,8 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
 {
   let data: RemoveReq = req.body ;
 
-  if (checkInput(data.name, 50, "^[a-zA-Z].*[\s\.]*$") &&
-  checkInput(data.grade, 50))
+  if (checkInput(data.grade, 50) &&
+  checkInput(data.name, 50, "^[a-zA-Z].*[\s\.]*$"))
   {
     try
     {

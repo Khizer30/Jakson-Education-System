@@ -81,22 +81,13 @@ function Add(): JSX.Element
   // Check Number
   function checkNumber(it: number): boolean
   {
-    if (it)
+    if ((it >= 0) && (it <= 99999))
     {
-      if ((it <= 99999) && (it >= 0))
-      {
-        return true ;
-      }
-      else
-      {
-        setMessage("Invalid Input!") ;
-        setWarn(true) ;
-        return false ;
-      }
+      return true ;
     }
     else
     {
-      setMessage("Please, Complete The Form!") ;
+      setMessage("Invalid Input!") ;
       setWarn(true) ;
       return false ;
     }
