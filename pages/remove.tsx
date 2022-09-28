@@ -152,7 +152,7 @@ function Remove(props: Props): JSX.Element
   return (
   <>
     <Head>
-      <title> JES - Remove Student </title>
+      <title> JES | Remove Student </title>
 
       <meta name="description" content="Remove Student from Database" />
       <meta name="keywords" content="JES, Remove, Student" />

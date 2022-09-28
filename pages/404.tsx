@@ -6,7 +6,7 @@ function Custom404(): JSX.Element
   return (
   <>
     <Head>
-      <title> JES - 404 Page </title>
+      <title> JES | 404 Page </title>
 
       <meta name="description" content="404 Page" />
       <meta name="keywords" content="JES, 404, Page" />

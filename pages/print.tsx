@@ -1,15 +1,31 @@
 import { useState } from "react" ;
 import Head from "next/head" ;
 import Image from "next/image" ;
+import Docxtemplater from "docxtemplater" ;
+import PizZip from "pizzip" ;
+import { saveAs } from "file-saver" ;
 import type React from "react" ;
 // ...
 import { db } from "../config/firebase" ;
 // ...
-import { studentObj2, grades, mapper, postAPI } from "../lib/Library" ;
+import { studentObj2, grades, mapper, postAPI, getDate } from "../lib/Library" ;
 import Alert from "../components/Alert" ;
-import { Name, Father, Reg, Fees, Arrears } from "../components/Disabled" ;
+import inWords from "../lib/Words" ;
+import { Name } from "../components/Disabled" ;
 import type { Student, DocData, Props, Res } from "../lib/Library" ;
-import img from "../public/images/edit.webp" ;
+import img from "../public/images/print.webp" ;
+
+// Setup
+let PizZipUtils: any = null ;
+if (typeof window !== undefined)
+{
+  import("pizzip/utils/index.js").then(function(x) { PizZipUtils = x }) ;
+}
+
+function loadFile(url: string, callback: any): void
+{
+  PizZipUtils.getBinaryContent(url, callback) ;
+}
 
 // SSR
 export async function getServerSideProps()
@@ -33,8 +49,8 @@ export async function getServerSideProps()
   return { props: { data: JSON.stringify(data) } } ;
 }
 
-// Edit
-function Edit(props: Props): JSX.Element
+// Print
+function Print(props: Props): JSX.Element
 {
   // Variables
   const [data, setData] = useState<object>(JSON.parse(props.data)) ;
@@ -48,12 +64,6 @@ function Edit(props: Props): JSX.Element
   {
     let name: string = event.target.name ;
     let value: string = event.target.value ;
-
-    // Capitalize
-    if ((name === "father") || (name === "reg"))
-    {
-      value = value.toUpperCase() ;
-    }
 
     // Set Inputs
     setInputs((values: Student) => ({ ...values, [name]: value })) ;
@@ -147,46 +157,79 @@ function Edit(props: Props): JSX.Element
     }
   }
 
+  // Generate Document
+  function generateDocument(): void
+  {
+    loadFile("/template/template.docx", (err: Error, content: any) =>
+    {
+      if (err)
+      {
+        throw err ;
+      }
+
+      const zip: PizZip = new PizZip(content) ;
+      const doc: Docxtemplater = new Docxtemplater().loadZip(zip) ;
+
+      let total: number = +inputs.fees + +inputs.arrears ;
+      let feeName: string = inWords(total.toString()) + "Rupees only" ;
+      if (!total)
+      {
+        feeName = "Zero Rupees only" ;
+      }
+
+      // Render
+      doc.render({
+        name: inputs.name,
+        father: inputs.father,
+        reg: inputs.reg,
+        grade: inputs.grade,
+        issue: getDate("issue", inputs.date),
+        due: getDate("due", inputs.date),
+        month: getDate("month", inputs.date),
+        fees: inputs.fees,
+        arrears: inputs.arrears,
+        total: total,
+        feeName: feeName
+      }) ;
+
+      const blob: Blob = doc.getZip().generate({ type: "blob", mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }) ;
+
+      // Save
+      saveAs(blob, `${ inputs.name }.docx`) ;
+    }) ;
+  }
+
   // Send
-  async function send(): Promise<void>
+  function send(): void
   {
     setMessage("") ;
 
     if (checkInput(inputs.grade, 50) &&
     checkInput(inputs.name, 50, "^[a-zA-Z].*[\s\.]*$") &&
-    checkInput(inputs.father, 50, "^[a-zA-Z].*[\s\.]*$") &&
-    checkInput(inputs.reg, 50) &&
     checkNumber(inputs.fees) &&
     checkNumber(inputs.arrears))
     {
-      let res: Res = await postAPI("/api/update", inputs) ;
+      generateDocument() ;
 
-      if (res.code === 100)
-      {
-        setWarn(false) ;
-      }
-      else
-      {
-        setWarn(true) ;
-      }
+      setWarn(false) ;
+      setMessage(`${ inputs.name }'s Fee Challan Printed!`) ;
 
       setInputs(studentObj2) ;
       setStudents(undefined) ;
-      setMessage(res.message) ;
     }
   }
 
   return (
   <>
     <Head>
-      <title> JES | Edit Student </title>
+      <title> JES | Print Fee Challan </title>
 
-      <meta name="description" content="Edit Student" />
-      <meta name="keywords" content="JES, Edit, Student" />
+      <meta name="description" content="Print Fee Challan" />
+      <meta name="keywords" content="JES, Print, Fee Challan" />
     </Head>
 
     <div className="container-fluid mainMargin">
-      <h1 className="heading"> Edit Student </h1>
+      <h1 className="heading"> Print Fee Challan </h1>
       <div className="row minHeight">
         
         <div className="col-md-6 d-flex justify-content-center align-items-center marginTB">
@@ -221,23 +264,12 @@ function Edit(props: Props): JSX.Element
             </div>
           }
 
-          { (inputs.name === "NULL") &&
-          <>
-            <Father />
-            <Reg />
-            <Fees />
-            <Arrears />
-          </>
-          }
-
-          { (inputs.name !== "NULL") &&
-          <>
             <div className="form-floating mb-3 mt-3">
               <input 
                 name="father" 
                 type="text"
                 value={ inputs.father }
-                onChange={ handleChange }
+                disabled
                 required
                 maxLength={ 50 }
                 pattern="^[a-zA-Z].*[\s\.]*$"
@@ -252,13 +284,26 @@ function Edit(props: Props): JSX.Element
                 name="reg" 
                 type="text"
                 value={ inputs.reg }
-                onChange={ handleChange }
+                disabled
                 required
                 maxLength={ 50 }
                 placeholder="Reg No.*" 
                 className="form-control textInput" 
               />
               <label htmlFor="reg" className="textInput"> Reg No.* </label>
+            </div>
+
+            <div className="form-floating mb-3 mt-3">
+              <input 
+                name="date"
+                type="date"
+                value={ inputs.date }
+                onChange={ handleChange }
+                required
+                placeholder="Date*" 
+                className="form-control textInput" 
+              />
+              <label htmlFor="date" className="textInput"> Date* </label>
             </div>
 
             <div className="form-floating mb-3 mt-3">
@@ -292,8 +337,6 @@ function Edit(props: Props): JSX.Element
               />
               <label htmlFor="arrears" className="textInput"> Arrears* </label>
             </div>
-          </>
-          }
 
             <div className="d-flex justify-content-center align-items-center text-center">
               <button onClick={ send } type="button" className="d-flex justify-content-center align-items-center mainBtn"> Submit </button>
@@ -321,5 +364,5 @@ function Edit(props: Props): JSX.Element
   )
 }
 
-// Export Edit
-export default Edit ;
+// Export Print
+export default Print ;

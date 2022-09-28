@@ -123,7 +123,7 @@ function Add(): JSX.Element
   return (
   <>
     <Head>
-      <title> JES - Add Student </title>
+      <title> JES | Add Student </title>
 
       <meta name="description" content="Add Student to Database" />
       <meta name="keywords" content="JES, Add, Student" />
@@ -178,7 +178,6 @@ function Add(): JSX.Element
                 onChange={ handleChange }
                 required
                 maxLength={ 50 }
-                pattern="[A-Z\d]"
                 placeholder="Reg No.*" 
                 className="form-control textInput" 
               />

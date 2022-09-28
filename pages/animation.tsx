@@ -8,7 +8,7 @@ function Animation(): JSX.Element
   return (
   <>
     <Head>
-      <title> JES - Animation </title>
+      <title> JES | Animation </title>
 
       <meta name="description" content="Animation" />
       <meta name="keywords" content="JES, Animation" />

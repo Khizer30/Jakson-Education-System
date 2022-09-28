@@ -7,6 +7,7 @@ interface Student
   grade: string ;
   fees: number  ;
   arrears: number ;
+  date?: string ;
 }
 
 // Student Object
@@ -28,7 +29,8 @@ const studentObj2: Student =
   reg: "",
   grade: "NULL",
   fees: 0,
-  arrears: 0
+  arrears: 0,
+  date: getDate("date")
 } ;
 
 // Remove Request Interface
@@ -171,6 +173,46 @@ function createResponse(code: number | string, message: string): string
   return JSON.stringify({ code: code, message: message }) ;
 }
 
+// Get Date
+function getDate(type: string, value?: string): string
+{
+  let date: string = "" ;
+  let today: Date = new Date() ;
+
+  // Set Time
+  if (value)
+  {
+    today = new Date(value) ;
+
+    if (type === "due")
+    {
+      today.setMilliseconds(today.getMilliseconds() + 604800000) ;
+    }
+  }
+
+  let dd: string = String(today.getDate()).padStart(2, "0") ;
+  let mm: string = String(today.getMonth() + 1).padStart(2, "0") ;
+  let yyyy: number = today.getFullYear() ;
+
+  if (type === "date")
+  {
+    date = yyyy + "-" + mm + "-" + dd ;
+  }
+  else if ((type === "issue") || (type === "due"))
+  {
+    date = dd + "/" + mm + "/" + yyyy ;
+  }
+  else if (type === "month")
+  {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"] ;
+    
+    date = monthNames[today.getMonth()] ;
+  }
+
+  return date ;
+}
+
 // Exports
-export { studentObj, studentObj2, removeObj, grades, mapper, checkInput, checkNumber, getAPI, postAPI, createResponse } ;
+export { studentObj, studentObj2, removeObj, grades, mapper, checkInput, checkNumber, getAPI, postAPI, createResponse, getDate } ;
 export type { Student, RemoveReq, GetReq, DocData, Props, Res } ;
