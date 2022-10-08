@@ -50,8 +50,6 @@ function AuthContextProvider({ children }: Props): JSX.Element
   // Log Out User
   async function logOutUser(): Promise<void>
   {
-    sessionStorage.clear() ;
-    
     await signOut(auth) ;
   }
 

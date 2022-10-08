@@ -3,7 +3,6 @@ import Head from "next/head" ;
 import { useRouter } from "next/router" ;
 import Image from "next/image" ;
 import type { NextRouter } from "next/router" ;
-import type { UserCredential } from "firebase/auth" ;
 // ...
 import { useAuth } from "../components/AuthContext" ;
 import { logInObj } from "../lib/Library" ;
@@ -88,10 +87,8 @@ function LogIn(): JSX.Element
     checkInput(inputs.password, 50, "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&=])[A-Za-z\\d@$!%*#?&=]{8,}$"))
     {
       logInUser(inputs.email, inputs.password)
-      .then((userCredential: UserCredential) =>
+      .then(() =>
       {
-        sessionStorage.setItem("user", JSON.stringify(userCredential.user.toJSON())) ;
-
         router.replace("/dashboard") ;
       })
       .catch((error: Error) =>
