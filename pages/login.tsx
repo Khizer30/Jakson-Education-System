@@ -2,11 +2,10 @@ import { useState, useEffect } from "react" ;
 import Head from "next/head" ;
 import { useRouter } from "next/router" ;
 import Image from "next/image" ;
-import type React from "react" ;
 import type { NextRouter } from "next/router" ;
 import type { UserCredential } from "firebase/auth" ;
 // ...
-import { useAuth } from "../lib/AuthContext" ;
+import { useAuth } from "../components/AuthContext" ;
 import { logInObj } from "../lib/Library" ;
 import type { LogIn, Error } from "../lib/Library" ;
 import img from "../public/images/logo.webp" ;
@@ -91,6 +90,8 @@ function LogIn(): JSX.Element
       logInUser(inputs.email, inputs.password)
       .then((userCredential: UserCredential) =>
       {
+        sessionStorage.setItem("user", JSON.stringify(userCredential.user.toJSON())) ;
+
         router.replace("/dashboard") ;
       })
       .catch((error: Error) =>

@@ -1,7 +1,7 @@
 import Head from "next/head" ;
 // ...
 import Loading from "../components/Loading" ;
-import { useAuth } from "../lib/AuthContext" ;
+import { useAuth } from "../components/AuthContext" ;
 
 // Animation
 function Animation(): JSX.Element

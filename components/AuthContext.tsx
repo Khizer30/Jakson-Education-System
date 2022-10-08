@@ -3,13 +3,19 @@ import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebas
 import type { Unsubscribe, User, UserCredential } from "firebase/auth" ;
 // ...
 import { auth } from "../config/auth" ;
-import type { AuthInterface } from "./Library" ;
+import type { AuthInterface } from "../lib/Library" ;
 
 const AuthContext = createContext<AuthInterface | undefined>(undefined) ;
 const useAuth = () => useContext(AuthContext) ;
 
+// Props
+interface Props
+{
+  children: React.ReactNode ;
+}
+
 // Auth Context Provider
-function AuthContextProvider({ children }: { children: React.ReactNode }): JSX.Element
+function AuthContextProvider({ children }: Props): JSX.Element
 {
   // Variables
   const [user, setUser] = useState<User | null>(null) ;
@@ -44,6 +50,8 @@ function AuthContextProvider({ children }: { children: React.ReactNode }): JSX.E
   // Log Out User
   async function logOutUser(): Promise<void>
   {
+    sessionStorage.clear() ;
+    
     await signOut(auth) ;
   }
 

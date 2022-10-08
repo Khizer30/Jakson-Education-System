@@ -1,12 +1,17 @@
 import { useEffect } from "react" ;
 import { useRouter } from "next/router" ;
-import type React from "react" ;
 import type { NextRouter } from "next/router" ;
 // ...
-import { useAuth } from "./AuthContext" ;
+import { useAuth } from "../components/AuthContext" ;
+
+// Props
+interface Props
+{
+  children: React.ReactNode ;
+}
 
 // Protected Route
-function ProtectedRoute({ children }: { children: React.ReactNode }): JSX.Element
+function ProtectedRoute({ children }: Props): JSX.Element
 {
   const router: NextRouter = useRouter() ;
   const { user } = useAuth()! ;
@@ -15,7 +20,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }): JSX.Elemen
   {
     if (!user)
     {
-      router.push("/login") ;
+      router.replace("/login") ;
     }
   }, [router, user]) ;
 

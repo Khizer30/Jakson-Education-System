@@ -1,8 +1,8 @@
 // ...
-import { useAuth } from "../lib/AuthContext" ;
+import { useAuth } from "./AuthContext" ;
 import Loading from "./Loading" ;
 import Navbar from "./Navbar" ;
-import ProtectedRoute from "../lib/ProtectedRoute" ;
+import ProtectedRoute from "./ProtectedRoute" ;
 
 // Props
 interface Props

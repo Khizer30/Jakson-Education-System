@@ -1,7 +1,7 @@
 import Link from "next/link" ;
 import Image from "next/image" ;
 // ...
-import { useAuth } from "../lib/AuthContext" ;
+import { useAuth } from "../components/AuthContext" ;
 import logo from "../public/images/logo.webp" ;
 
 // Navbar

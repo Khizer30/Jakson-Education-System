@@ -2,7 +2,7 @@ import Head from "next/head" ;
 import { useRouter } from "next/router" ;
 import type { NextRouter } from "next/router" ;
 // ...
-import { useAuth } from "../lib/AuthContext" ;
+import { useAuth } from "../components/AuthContext" ;
 
 // Home
 function Home(): JSX.Element

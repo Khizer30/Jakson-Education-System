@@ -3,7 +3,7 @@ import { useRouter } from "next/router" ;
 import type { AppProps } from "next/app" ;
 import type { NextRouter } from "next/router" ;
 // ...
-import AuthContextProvider from "../lib/AuthContext" ;
+import AuthContextProvider from "../components/AuthContext" ;
 import Routes from "../components/Routes" ;
 import "../styles/global.css" ;
 
