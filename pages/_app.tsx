@@ -3,8 +3,8 @@ import { useRouter } from "next/router" ;
 import type { AppProps } from "next/app" ;
 import type { NextRouter } from "next/router" ;
 // ...
-import Loading from "../components/Loading" ;
-import Navbar from "../components/Navbar" ;
+import AuthContextProvider from "../lib/AuthContext" ;
+import Routes from "../components/Routes" ;
 import "../styles/global.css" ;
 
 // App
@@ -32,15 +32,11 @@ function App({ Component, pageProps }: AppProps): JSX.Element
 
   return (
   <>
-    <Navbar />
-
-    { loading &&
-      <Loading />
-    }
-
-    <div className={ loading ? "displayNone" : "" }>
-      <Component { ...pageProps } />
-    </div>
+    <AuthContextProvider>
+      <Routes loading={ loading } path={ router.pathname }>
+        <Component { ...pageProps } />
+      </Routes>
+    </AuthContextProvider>
   </>
   )
 }

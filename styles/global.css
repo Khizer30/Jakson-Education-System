@@ -38,6 +38,8 @@
 .lastLink
 {
   border-top: 1.5px solid rgb(40,45,60) ;
+  margin: 0px ;
+  cursor: pointer ;
 }
 
 /* Footer */
@@ -242,7 +244,12 @@ a:hover
   min-height: 70vh ;
 }
 
-.animationHeight 
+.animationHeight1
+{
+  min-height: 90vh ;
+}
+
+.animationHeight2
 {
   min-height: 77.5vh ;
 }
@@ -308,4 +315,89 @@ a:hover
   text-align: center ;
   font-family: Oxygen, sans-serif ;
   color: rgb(40,45,60) ;
+}
+
+/* Log In */
+.loginContainer 
+{
+  min-height: 90vh ;
+  background: rgb(250,150,30) ;
+}
+
+.loginDiv 
+{
+  background: rgb(255,255,255) ;
+  height: 30rem ;
+  width: 22.5rem ;
+  border-radius: 10px ;
+  border-style: none ;
+}
+
+.loginImg 
+{
+  width: 100% ;
+}
+
+.loginInput
+{
+  font-family: Oxygen, sans-serif ;
+  font-weight: bold ;
+  font-size: 1em ;
+  margin-top: 1rem ;
+  margin-bottom: 1rem ;
+  color: var(--bs-gray-800) !important ;
+}
+
+.loginInput:focus
+{
+  box-shadow: none ;
+  border-color: rgb(250,150,30) ;
+  box-shadow: 2.25px 2.25px rgb(250,150,30) ;
+}
+
+.loginBtn 
+{
+  width: 100% ;
+  height: 40px ;
+  font-family: Oxygen, sans-serif ;
+  font-weight: bold ;
+  text-align: center ;
+  font-size: 0.95em ;
+  background: rgb(250,150,30) ;
+  border-radius: 10px ;
+  color: rgb(255,255,255) ;
+  border-style: none ;
+
+  transition: all ;
+  transition-duration: 300ms ;
+  transition-timing-function: ease ;
+}
+
+.loginBtn:focus
+{
+  outline: none ;
+}
+
+.loginBtn:hover
+{
+  background: rgb(40,45,60) ;
+  transform: scale(1.03) ;
+  outline: none ;
+}
+
+.loginBtn:active
+{
+  background: rgb(250,150,30) ;
+  box-shadow: 1.5px 1.5px rgb(250,150,30) ;
+  transform: scale(0.97) ;
+}
+
+.loginError
+{
+  text-align: center ;
+  font-family: Oxygen, sans-serif ;
+  font-size: 0.9em ;
+  font-weight: bold ;
+  color: rgb(190,30,45) ;
+  margin: 0px ;
 }

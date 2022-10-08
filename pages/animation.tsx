@@ -1,10 +1,14 @@
 import Head from "next/head" ;
 // ...
 import Loading from "../components/Loading" ;
+import { useAuth } from "../lib/AuthContext" ;
 
 // Animation
 function Animation(): JSX.Element
 {
+  // Variable
+  const { user } = useAuth()! ;
+
   return (
   <>
     <Head>
@@ -14,7 +18,7 @@ function Animation(): JSX.Element
       <meta name="keywords" content="JES, Animation" />
     </Head>
 
-    <Loading />
+    <Loading fullScreen={ (user ? false : true) } />
   </>
   )
 }

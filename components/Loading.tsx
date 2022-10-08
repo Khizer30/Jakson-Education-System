@@ -1,9 +1,15 @@
+// Props
+interface Props
+{
+  fullScreen: boolean ;
+}
+
 // Loading
-function Loading(): JSX.Element
+function Loading({ fullScreen }: Props): JSX.Element
 {
   return (
   <>
-    <div className="container-fluid d-flex justify-content-center align-items-center animationHeight">
+    <div className={ "container-fluid d-flex justify-content-center align-items-center " + (fullScreen ? "animationHeight1" : "animationHeight2") }>
       <svg width="300" height="300" viewBox="0 0 100 100" fill="none" className="scaler" xmlns="http://www.w3.org/2000/svg">
         <g id="Frame">
           <rect id="Blue" x="10" y="12" width="20" height="75" rx="3" fill="#282D3C" />

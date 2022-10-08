@@ -10,7 +10,8 @@ if (!admin.apps.length)
   const serviceAccount: string = require("./serviceAccount.json") ;
   const app: App = initializeApp({ credential: cert(serviceAccount) }) ;
 }
+
 const db: Firestore = getFirestore() ; 
 
-// Exports
+// Export
 export { db } ;

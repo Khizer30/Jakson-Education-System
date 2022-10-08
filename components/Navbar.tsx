@@ -1,17 +1,21 @@
 import Link from "next/link" ;
 import Image from "next/image" ;
 // ...
+import { useAuth } from "../lib/AuthContext" ;
 import logo from "../public/images/logo.webp" ;
 
 // Navbar
 function Navbar(): JSX.Element
 {
+  // Variable
+  const { logOutUser } = useAuth()! ;
+
   return (
   <>
     <nav className="navbar navbar-light navbar-expand-xxl navLine padTB">
       <div className="container-fluid">
         <div className="navbar-brand d-flex justify-content-center align-items-center navImg scaler">
-          <Link href="/">
+          <Link href="/dashboard">
             <a className="d-flex justify-content-center align-items-center">
               <Image
                 src={ logo }
@@ -34,7 +38,7 @@ function Navbar(): JSX.Element
         <div className="collapse navbar-collapse" id="navCol">
           <ul className="navbar-nav ms-auto">
 
-            <Link href="/">
+            <Link href="/dashboard">
               <a className="nav-item navLink"> Home </a>
             </Link>
 
@@ -54,9 +58,9 @@ function Navbar(): JSX.Element
               <a className="nav-item navLink"> Edit Student </a>
             </Link>
 
-            <Link href="/logout">
-              <a className="nav-item navLink lastLink"> Log Out </a>
-            </Link>
+            <div>
+              <p onClick={ logOutUser } className="nav-item navLink lastLink"> Log Out </p>
+            </div>
 
           </ul>
         </div>

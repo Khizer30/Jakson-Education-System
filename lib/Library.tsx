@@ -1,3 +1,5 @@
+import type { User, UserCredential } from "firebase/auth" ;
+
 // Student Interface
 interface Student
 {
@@ -63,6 +65,28 @@ interface DocData
   arrears: number ;
 }
 
+// Log In Interface
+interface LogIn
+{
+  email: string ;
+  password: string ;
+}
+
+// Log In Object
+const logInObj: LogIn =
+{
+  email: "",
+  password: ""
+} ;
+
+// Auth Interface
+interface AuthInterface
+{
+  user: User | null ;
+  logInUser(email: string, password: string): Promise<UserCredential> ;
+  logOutUser(): Promise<void> ;
+}
+
 // Props Interface
 interface Props
 {
@@ -73,6 +97,13 @@ interface Props
 interface Res
 {
   code: number | string ;
+  message: string ;
+}
+
+// Error Interface
+interface Error
+{
+  code: string ;
   message: string ;
 }
 
@@ -214,5 +245,5 @@ function getDate(type: string, value?: string): string
 }
 
 // Exports
-export { studentObj, studentObj2, removeObj, grades, mapper, checkInput, checkNumber, getAPI, postAPI, createResponse, getDate } ;
-export type { Student, RemoveReq, GetReq, DocData, Props, Res } ;
+export { studentObj, studentObj2, removeObj, logInObj, grades, mapper, checkInput, checkNumber, getAPI, postAPI, createResponse, getDate } ;
+export type { Student, RemoveReq, GetReq, DocData, LogIn, AuthInterface, Props, Res, Error } ;
