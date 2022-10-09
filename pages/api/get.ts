@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next" ;
+import type { NextApiRequest, NextApiResponse } from "next" ;
 // ...
 import { db } from "../../config/firebase" ;
 import { createResponse, checkInput } from "../../lib/Library" ;

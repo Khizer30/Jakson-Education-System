@@ -48,7 +48,7 @@ function Dashboard(): JSX.Element
                 src={ printImg }
                 alt="Clipart"
                 layout="intrinsic"
-                placeholder="empty"
+                placeholder="blur"
                 priority
                 draggable="false"
               />
@@ -59,7 +59,7 @@ function Dashboard(): JSX.Element
                 src={ editImg }
                 alt="Clipart"
                 layout="intrinsic"
-                placeholder="empty"
+                placeholder="blur"
                 priority
                 draggable="false"
               />
@@ -71,7 +71,7 @@ function Dashboard(): JSX.Element
                 src={ addImg }
                 alt="Clipart"
                 layout="intrinsic"
-                placeholder="empty"
+                placeholder="blur"
                 priority
                 draggable="false"
               />
@@ -82,7 +82,7 @@ function Dashboard(): JSX.Element
                 src={ removeImg }
                 alt="Clipart"
                 layout="intrinsic"
-                placeholder="empty"
+                placeholder="blur"
                 priority
                 draggable="false"
               />

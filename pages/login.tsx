@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react" ;
+import React, { useState, useEffect, useRef } from "react" ;
 import Head from "next/head" ;
 import { useRouter } from "next/router" ;
 import Image from "next/image" ;
+import ReCAPTCHA from "react-google-recaptcha" ;
 import type { NextRouter } from "next/router" ;
 // ...
 import { useAuth } from "../components/AuthContext" ;
-import { logInObj } from "../lib/Library" ;
-import type { LogIn, Error } from "../lib/Library" ;
+import { logInObj, postAPI } from "../lib/Library" ;
+import type { LogIn, ReCAPTCHAResponse, Res, Error } from "../lib/Library" ;
 import img from "../public/images/logo.webp" ;
 
 // Log In
@@ -17,6 +18,7 @@ function LogIn(): JSX.Element
   const [message, setMessage] = useState<string>("") ;
   const router: NextRouter = useRouter() ;
   const { user, logInUser } = useAuth()! ;
+  const recaptchaRef = useRef<ReCAPTCHA | undefined>(undefined) ;
 
   // Redirect If Logged In
   useEffect(() =>
@@ -78,34 +80,61 @@ function LogIn(): JSX.Element
     }
   }
 
+  // Verify
+  async function verify(): Promise<boolean>
+  {
+    let token: string | null = await recaptchaRef.current!.executeAsync() ;
+    recaptchaRef.current!.reset() ;
+
+    let res: Res = await postAPI("/api/recaptcha", { token: token }) ;
+
+    if (res.code === 100)
+    {
+      let result: ReCAPTCHAResponse = JSON.parse(res.message) ;
+      return result.success ;
+    }
+    else
+    {
+      return false ;
+    }
+  }
+
   // Send
   async function send(): Promise<void>
   {
     setMessage("") ;
+    let isHuman: boolean = await verify() ;
 
-    if (checkInput(inputs.email, 50, "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|info)\\b") &&
-    checkInput(inputs.password, 50, "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&=])[A-Za-z\\d@$!%*#?&=]{8,}$"))
+    if (isHuman)
     {
-      logInUser(inputs.email, inputs.password)
-      .then(() =>
+      if (checkInput(inputs.email, 50, "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|info)\\b") &&
+      checkInput(inputs.password, 50, "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&=])[A-Za-z\\d@$!%*#?&=]{8,}$"))
       {
-        router.replace("/dashboard") ;
-      })
-      .catch((error: Error) =>
-      {
-        if (error.code === "auth/user-not-found")
+        logInUser(inputs.email, inputs.password)
+        .then(() =>
         {
-          setMessage("*Invalid Email") ;
-        }
-        else if (error.code === "auth/wrong-password")
+          router.replace("/dashboard") ;
+        })
+        .catch((error: Error) =>
         {
-          setMessage("*Invalid Password") ;
-        }
-        else
-        {
-          setMessage(`*${ error.code }`) ;
-        }
-      }) ;
+          if (error.code === "auth/user-not-found")
+          {
+            setMessage("*Invalid Email") ;
+          }
+          else if (error.code === "auth/wrong-password")
+          {
+            setMessage("*Invalid Password") ;
+          }
+          else
+          {
+            setMessage(`*${ error.code }`) ;
+          }
+        }) ;
+      }
+    }
+    else
+    {
+      setMessage("You Are a Bot!") ;
     }
   }
 
@@ -160,6 +189,12 @@ function LogIn(): JSX.Element
               pattern="^[a-zA-Z].*[\s\.]*$"
               placeholder="Password*" 
               className="form-control loginInput" 
+            />
+
+            <ReCAPTCHA
+              ref={ recaptchaRef }
+              sitekey="6LeIm2giAAAAAOptxX6lblfqakVcWqlRHXBCRONl"
+              size="invisible"
             />
 
             <div className="d-flex justify-content-center align-items-center">

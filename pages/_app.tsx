@@ -16,7 +16,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element
   useEffect(() => 
   {
     const handleStart = (url: string) => (url !== router.asPath) && setLoading(true) ;
-    const handleComplete = (url: string) => (url === router.asPath) && setTimeout(() => { setLoading(false) }, 1000) ;
+    const handleComplete = (url: string) => (url === router.asPath) && setTimeout(() => { setLoading(false) }, 500) ;
 
     router.events.on("routeChangeStart", handleStart) ;
     router.events.on("routeChangeComplete", handleComplete) ;

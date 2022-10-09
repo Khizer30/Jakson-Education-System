@@ -87,6 +87,20 @@ interface AuthInterface
   logOutUser(): Promise<void> ;
 }
 
+// ReCAPTCHARequest
+interface ReCAPTCHARequest
+{
+  token: string ;
+}
+
+// ReCAPTCHAResponse
+interface ReCAPTCHAResponse
+{
+  success: boolean ;
+  challenge_ts: string ;
+  hostname: string ;
+}
+
 // Props Interface
 interface Props
 {
@@ -246,4 +260,4 @@ function getDate(type: string, value?: string): string
 
 // Exports
 export { studentObj, studentObj2, removeObj, logInObj, grades, mapper, checkInput, checkNumber, getAPI, postAPI, createResponse, getDate } ;
-export type { Student, RemoveReq, GetReq, DocData, LogIn, AuthInterface, Props, Res, Error } ;
+export type { Student, RemoveReq, GetReq, DocData, LogIn, AuthInterface, ReCAPTCHARequest, ReCAPTCHAResponse, Props, Res, Error } ;
