@@ -7,7 +7,7 @@ import type { Firestore } from "firebase-admin/firestore" ;
 // Initialize
 if (!admin.apps.length)
 {
-  const serviceAccount: string = require("./serviceAccount.json") ;
+  const serviceAccount: object = JSON.parse(process.env.SERVICE_ACCOUNT!) ;
   const app: App = initializeApp({ credential: cert(serviceAccount) }) ;
 }
 const db: Firestore = getFirestore() ; 

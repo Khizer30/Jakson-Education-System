@@ -1,7 +1,6 @@
-import { useRouter } from "next/router" ;
 import Head from "next/head" ;
 import Image from "next/image" ;
-import type  { NextRouter } from "next/router" ;
+import Link from "next/link" ;
 // ...
 import { useAuth } from "../components/AuthContext" ;
 import printImg from "../public/images/print_link.webp" ;
@@ -13,19 +12,12 @@ import removeImg from "../public/images/remove_link.webp" ;
 function Dashboard(): JSX.Element
 {
   // Variables
-  const router: NextRouter = useRouter() ;
   const { user } = useAuth()! ;
   let greetings: string = "Assalam Walekum" ;
 
   if (user?.displayName)
   {
     greetings = `Assalam Walekum, ${ user.displayName }` ;
-  }
-
-  // Linker
-  function linker(path: string): void
-  {
-    router.push(path) ;
   }
 
   return (
@@ -43,50 +35,59 @@ function Dashboard(): JSX.Element
         <h1 className="dashboardH2"> What Do You Want To Do? </h1>
         <div className="row">
           <div className="col d-flex flex-column justify-content-center align-items-center">
-            <div onClick={ () => linker("/print") } className="dashboardImage">
-              <Image
-                src={ printImg }
-                alt="Clipart"
-                layout="intrinsic"
-                placeholder="blur"
-                priority
-                draggable="false"
-              />
-            </div>
+            <Link href="/print">
+              <a className="dashboardImage">
+                <Image
+                  src={ printImg }
+                  alt="Clipart"
+                  layout="intrinsic"
+                  placeholder="blur"
+                  priority
+                  draggable="false"
+                />
+              </a>
+            </Link>
 
-            <div onClick={ () => linker("/edit") } className="dashboardImage">
-              <Image
-                src={ editImg }
-                alt="Clipart"
-                layout="intrinsic"
-                placeholder="blur"
-                priority
-                draggable="false"
-              />
-            </div>
+            <Link href="/edit">
+              <a className="dashboardImage">
+                <Image
+                  src={ editImg }
+                  alt="Clipart"
+                  layout="intrinsic"
+                  placeholder="blur"
+                  priority
+                  draggable="false"
+                />
+              </a>
+            </Link>
           </div>
-          <div className="col d-flex flex-column justify-content-center align-items-center">
-            <div onClick={ () => linker("/add") } className="dashboardImage">
-              <Image
-                src={ addImg }
-                alt="Clipart"
-                layout="intrinsic"
-                placeholder="blur"
-                priority
-                draggable="false"
-              />
-            </div>
 
-            <div onClick={ () => linker("/remove") } className="dashboardImage">
-              <Image
-                src={ removeImg }
-                alt="Clipart"
-                layout="intrinsic"
-                placeholder="blur"
-                priority
-                draggable="false"
-              />
-            </div>
+          <div className="col d-flex flex-column justify-content-center align-items-center">
+            <Link href="/add">
+              <a className="dashboardImage">
+                <Image
+                  src={ addImg }
+                  alt="Clipart"
+                  layout="intrinsic"
+                  placeholder="blur"
+                  priority
+                  draggable="false"
+                />
+              </a>
+            </Link>
+
+            <Link href="/remove">
+              <a className="dashboardImage">
+                <Image
+                  src={ removeImg }
+                  alt="Clipart"
+                  layout="intrinsic"
+                  placeholder="blur"
+                  priority
+                  draggable="false"
+                />
+              </a>
+            </Link>
           </div>
         </div>
       </div>

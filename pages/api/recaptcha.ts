@@ -7,11 +7,10 @@ import type { ReCAPTCHARequest, ReCAPTCHAResponse } from "../../lib/Library" ;
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> =>
 {
   let data: ReCAPTCHARequest = req.body ;
-  let secretKey: string = process.env.SECRET_KEY! ;
 
   try
   {
-    let response: Response = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${ secretKey }&response=${ data.token }`, 
+    let response: Response = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${ process.env.SECRET_KEY! }&response=${ data.token }`, 
     {
       mode: "cors",
       method: "POST"
@@ -22,6 +21,6 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
   }
   catch
   {
-    res.end(createResponse(400, "Error Connecting To Google!")) ;
+    res.end(createResponse(400, "*Error Connecting To Google!")) ;
   }
 }

@@ -84,13 +84,12 @@ function LogIn(): JSX.Element
   async function verify(): Promise<boolean>
   {
     let token: string | null = await recaptchaRef.current!.executeAsync() ;
-    recaptchaRef.current!.reset() ;
-
     let res: Res = await postAPI("/api/recaptcha", { token: token }) ;
 
     if (res.code === 100)
     {
       let result: ReCAPTCHAResponse = JSON.parse(res.message) ;
+
       return result.success ;
     }
     else
@@ -103,12 +102,14 @@ function LogIn(): JSX.Element
   async function send(): Promise<void>
   {
     setMessage("") ;
-    let isHuman: boolean = await verify() ;
+    recaptchaRef.current!.reset() ;
 
-    if (isHuman)
+    if (checkInput(inputs.email, 50, "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|info)\\b") &&
+    checkInput(inputs.password, 50, "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&=])[A-Za-z\\d@$!%*#?&=]{8,}$"))
     {
-      if (checkInput(inputs.email, 50, "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|info)\\b") &&
-      checkInput(inputs.password, 50, "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&=])[A-Za-z\\d@$!%*#?&=]{8,}$"))
+      let isHuman: boolean = await verify() ;
+
+      if (isHuman)
       {
         logInUser(inputs.email, inputs.password)
         .then(() =>
@@ -125,16 +126,20 @@ function LogIn(): JSX.Element
           {
             setMessage("*Invalid Password") ;
           }
+          else if (error.code === "auth/too-many-requests")
+          {
+            setMessage("*Too Many Attempts") ;
+          }
           else
           {
             setMessage(`*${ error.code }`) ;
           }
         }) ;
       }
-    }
-    else
-    {
-      setMessage("You Are a Bot!") ;
+      else
+      {
+        setMessage("You Are a Bot!") ;
+      }
     }
   }
 
@@ -191,15 +196,15 @@ function LogIn(): JSX.Element
               className="form-control loginInput" 
             />
 
-            <ReCAPTCHA
-              ref={ recaptchaRef }
-              sitekey="6LeIm2giAAAAAOptxX6lblfqakVcWqlRHXBCRONl"
-              size="invisible"
-            />
-
             <div className="d-flex justify-content-center align-items-center">
               <button onClick={ send } type="button" className="d-flex justify-content-center align-items-center loginBtn"> Submit </button>
             </div>
+
+            <ReCAPTCHA
+              ref={ recaptchaRef }
+              sitekey={ process.env.NEXT_PUBLIC_SITE_KEY! }
+              size="invisible"
+            />
           </form>
         </div>
       </div>

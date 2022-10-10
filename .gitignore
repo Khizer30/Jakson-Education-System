@@ -9,7 +9,7 @@
 /build
 
 # local env files
-.env*.local
+.env
 
 # vercel
 .vercel
@@ -20,4 +20,3 @@ next-env.d.ts
 
 # extra
 /Extra
-serviceAccount.json
