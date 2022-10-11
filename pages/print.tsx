@@ -15,18 +15,6 @@ import { Name } from "../components/Disabled" ;
 import type { Student, DocData, Props, Res } from "../lib/Library" ;
 import img from "../public/images/print.webp" ;
 
-// Setup
-let PizZipUtils: any = null ;
-if (typeof window !== undefined)
-{
-  import("pizzip/utils/index.js").then(function(x) { PizZipUtils = x }) ;
-}
-
-function loadFile(url: string, callback: any): void
-{
-  PizZipUtils.getBinaryContent(url, callback) ;
-}
-
 // SSR
 export async function getServerSideProps()
 {
@@ -47,6 +35,14 @@ export async function getServerSideProps()
   }
 
   return { props: { data: JSON.stringify(data) } } ;
+}
+
+// Load File
+function loadFile(url: string, callback: any): void
+{
+  const PizZipUtils: any = require("pizzip/utils/index.js") ;
+
+  PizZipUtils.getBinaryContent(url, callback) ;
 }
 
 // Print
