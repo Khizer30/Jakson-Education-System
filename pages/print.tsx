@@ -74,7 +74,7 @@ function Print(props: Props): JSX.Element
     // Set Student
     if (name === "name")
     {
-      let res: Res = await postAPI("/api/get", { grade: inputs.grade, name: value }) ;
+      let res: Res = await postAPI("/api/student/get", { grade: inputs.grade, name: value }) ;
       
       if (res.code === 100)
       {
@@ -176,8 +176,8 @@ function Print(props: Props): JSX.Element
       // Render
       doc.render({
         name: inputs.name,
-        father: inputs.father,
-        reg: inputs.reg,
+        father: (inputs.father === "NONE") ? "" : inputs.father,
+        reg: (inputs.reg === "NONE") ? "" : inputs.reg,
         grade: inputs.grade,
         issue: getDate("issue", inputs.date),
         due: getDate("due", inputs.date),
