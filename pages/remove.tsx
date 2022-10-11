@@ -116,7 +116,7 @@ function Remove(props: Props): JSX.Element
     if (checkInput(inputs.grade, 50) &&
     checkInput(inputs.name, 50, "^[a-zA-Z].*[\s\.]*$"))
     {
-      let res: Res = await postAPI("/api/remove", inputs) ;
+      let res: Res = await postAPI("/api/student/remove", inputs) ;
 
       if (res.code === 100)
       {

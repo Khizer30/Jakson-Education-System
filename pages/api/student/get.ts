@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next" ;
 // ...
-import { db } from "../../config/firebase" ;
-import { createResponse, checkInput } from "../../lib/Library" ;
-import type { GetReq } from "../../lib/Library" ;
+import { db } from "../../../config/firebase" ;
+import { createResponse, checkInput } from "../../../lib/Library" ;
+import type { GetReq } from "../../../lib/Library" ;
 
 // GET
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> =>

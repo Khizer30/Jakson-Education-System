@@ -104,7 +104,7 @@ function Add(): JSX.Element
     checkInput(inputs.grade, 50) &&
     checkNumber(inputs.fees))
     {
-      let res: Res = await postAPI("/api/add", inputs) ;
+      let res: Res = await postAPI("/api/student/add", inputs) ;
 
       if (res.code === 100)
       {

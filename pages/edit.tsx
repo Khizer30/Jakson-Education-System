@@ -68,7 +68,7 @@ function Edit(props: Props): JSX.Element
     // Set Student
     if (name === "name")
     {
-      let res: Res = await postAPI("/api/get", { grade: inputs.grade, name: value }) ;
+      let res: Res = await postAPI("/api/student/get", { grade: inputs.grade, name: value }) ;
       
       if (res.code === 100)
       {
@@ -159,7 +159,7 @@ function Edit(props: Props): JSX.Element
     checkNumber(inputs.fees) &&
     checkNumber(inputs.arrears))
     {
-      let res: Res = await postAPI("/api/update", inputs) ;
+      let res: Res = await postAPI("/api/student/update", inputs) ;
 
       if (res.code === 100)
       {
