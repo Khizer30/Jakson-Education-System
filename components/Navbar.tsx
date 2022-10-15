@@ -12,7 +12,7 @@ function Navbar(): JSX.Element
 
   return (
   <>
-    <nav className="navbar navbar-light navbar-expand-xxl navLine padTB">
+    <nav className="navbar navbar-light navLine padTB">
       <div className="container-fluid">
         <div className="navbar-brand d-flex justify-content-center align-items-center navImg scaler">
           <Link href="/dashboard">

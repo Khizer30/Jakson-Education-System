@@ -14,11 +14,12 @@ import img from "../public/images/logo.webp" ;
 function LogIn(): JSX.Element
 {
   // Variables
-  const [inputs, setInputs] = useState<LogIn>(logInObj) ;
-  const [message, setMessage] = useState<string>("") ;
   const router: NextRouter = useRouter() ;
   const { user, logInUser } = useAuth()! ;
   const recaptchaRef = useRef<ReCAPTCHA | undefined>(undefined) ;
+  const [inputs, setInputs] = useState<LogIn>(logInObj) ;
+  const [message, setMessage] = useState<string>("") ;
+  const [loading, setLoading] = useState<boolean>(false) ;
 
   // Redirect If Logged In
   useEffect(() =>
@@ -102,11 +103,13 @@ function LogIn(): JSX.Element
   async function send(): Promise<void>
   {
     setMessage("") ;
-    recaptchaRef.current!.reset() ;
 
     if (checkInput(inputs.email, 50, "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|info)\\b") &&
     checkInput(inputs.password, 50, "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&=])[A-Za-z\\d@$!%*#?&=]{8,}$"))
     {
+      setLoading(true) ;
+      setMessage("Verifying...") ;
+
       let isHuman: boolean = await verify() ;
 
       if (isHuman)
@@ -118,6 +121,10 @@ function LogIn(): JSX.Element
         })
         .catch((error: Error) =>
         {
+          setLoading(false) ;
+
+          recaptchaRef.current!.reset() ;
+
           if (error.code === "auth/user-not-found")
           {
             setMessage("*Invalid Email") ;
@@ -138,7 +145,10 @@ function LogIn(): JSX.Element
       }
       else
       {
+        setLoading(false) ;
         setMessage("You Are a Bot!") ;
+
+        recaptchaRef.current!.reset() ;
       }
     }
   }
@@ -169,7 +179,7 @@ function LogIn(): JSX.Element
           <form method="post" target="_self" encType="application/x-www-form-urlencoded"
           autoComplete="off" noValidate onSubmit={ handleSubmit }>
 
-            <p className="loginError"> { message || <br /> } </p>
+            <p className={ loading ? "loginLoading" : "loginError" }> { message || <br /> } </p>
 
             <input 
               name="email" 

@@ -154,12 +154,12 @@ function Remove(props: Props): JSX.Element
     <Head>
       <title> JES | Remove Student </title>
 
-      <meta name="description" content="Remove Student from Database" />
+      <meta name="description" content="Remove Student" />
       <meta name="keywords" content="JES, Remove, Student" />
     </Head>
 
     <div className="container-fluid mainMargin">
-      <h1 className="heading"> Remove Student from Database </h1>
+      <h1 className="heading"> Remove Student </h1>
       <div className="row minHeight">
         
         <div className="col-md-6 d-flex justify-content-center align-items-center marginTB">

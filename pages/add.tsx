@@ -125,12 +125,12 @@ function Add(): JSX.Element
     <Head>
       <title> JES | Add Student </title>
 
-      <meta name="description" content="Add Student to Database" />
+      <meta name="description" content="Add Student" />
       <meta name="keywords" content="JES, Add, Student" />
     </Head>
 
     <div className="container-fluid mainMargin">
-      <h1 className="heading"> Add Student to Database </h1>
+      <h1 className="heading"> Add Student </h1>
       <div className="row minHeight">
         
         <div className="col-md-6 d-flex justify-content-center align-items-center marginTB">

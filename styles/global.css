@@ -125,6 +125,7 @@ body
 .mainBtn:focus
 {
   outline: none ;
+  transform: scale(1.05) ;
 }
 
 .mainBtn:active
@@ -262,40 +263,40 @@ a:hover
 /* Animation */
 #Blue
 {
-  animation: toRight1 1.5s ease-in infinite ;
+  animation: toRight 1.25s ease-in infinite ;
 }
 
 #Yellow
 {
-  animation: toRight2 1.5s ease-in infinite ;
+  animation: toMiddle 1.25s ease-in infinite ;
 }
 
 #Red
 {
-  animation: toRight3 1.5s ease-in infinite ;
+  animation: toLeft 1.25s ease-in infinite ;
 }
 
-@keyframes toRight1
+@keyframes toRight
 {
   0% { transform: translateX(0%) ; }
-  40%, 60% { transform: translateX(10%) ; }
+  50% { transform: translateX(10%) ; }
   100% { transform: translateX(0%) ; }
 }
 
-@keyframes toRight2
+@keyframes toMiddle
 {
-  0% { transform: translateX(10%) ; }
-  25% { transform: translateX(0%) ; }
-  50% { transform: translateX(10%) ; }
-  75% { transform: translateX(0%) ; }
-  100% { transform: translateX(10%) ; }
+  0% { transform: translateY(0%) ; }
+  25% { transform: translateY(10%) ; }
+  50% { transform: translateY(0%) ; }
+  75% { transform: translateY(-10%) ; }
+  100% { transform: translateY(0%) ; }
 }
 
-@keyframes toRight3
+@keyframes toLeft
 {
-  0% { transform: translateX(10%) ; }
-  40%, 60% { transform: translateX(0%) ; }
-  100% { transform: translateX(10%) ; }
+  0% { transform: translateX(0%) ; }
+  50% { transform: translateX(-10%) ; }
+  100% { transform: translateX(0%) ; }
 }
 
 /* 404 */
@@ -363,7 +364,7 @@ a:hover
   text-align: center ;
   font-size: 0.95em ;
   background: rgb(250,150,30) ;
-  border-radius: 10px ;
+  border-radius: 5px ;
   color: rgb(255,255,255) ;
   border-style: none ;
 
@@ -375,6 +376,7 @@ a:hover
 .loginBtn:focus
 {
   outline: none ;
+  transform: scale(1.03) ;
 }
 
 .loginBtn:hover
@@ -398,6 +400,16 @@ a:hover
   font-size: 0.9em ;
   font-weight: bold ;
   color: rgb(190,30,45) ;
+  margin: 0px ;
+}
+
+.loginLoading
+{
+  text-align: center ;
+  font-family: Oxygen, sans-serif ;
+  font-size: 0.9em ;
+  font-weight: bold ;
+  color: rgb(40,45,60) ;
   margin: 0px ;
 }
 
