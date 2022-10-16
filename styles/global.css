@@ -135,6 +135,43 @@ body
   transform: scale(0.95) ;
 }
 
+.minorBtn
+{
+  font-weight: bold ;
+  font-family: Oxygen, sans-serif ;
+  font-size: 1em ;
+  background: rgb(40,45,60) ;
+  width: 85px ;
+  height: 45px ;
+  border-style: none ;
+  border-radius: 10px ;
+  color: var(--bs-gray-100) ;
+
+  transition: all ;
+  transition-duration: 350ms ;
+  transition-timing-function: ease ;
+}
+
+.minorBtn:hover
+{
+  background: rgb(250,150,30) ;
+  transform: scale(1.05) ;
+  outline: none ;
+}
+
+.minorBtn:focus
+{
+  outline: none ;
+  transform: scale(1.05) ;
+}
+
+.minorBtn:active
+{
+  background: rgb(40,45,60) ;
+  box-shadow: 2.5px 2.5px rgb(40,45,60) ;
+  transform: scale(0.95) ;
+}
+
 .scaler
 {
   transition: all ;

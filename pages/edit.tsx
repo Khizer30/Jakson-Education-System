@@ -176,6 +176,111 @@ function Edit(props: Props): JSX.Element
     }
   }
 
+  // Change Students Data
+  function changeData(): void
+  {
+    let newData: object = {} ;
+
+    // Remove Student
+    let tempArr: string[] = data[inputs.grade] ;
+    let index: number = tempArr.indexOf(inputs.name) ;
+    
+    tempArr.splice(index, 1) ;
+    if (!tempArr.length)
+    {
+      newData = { ...data, [inputs.grade]: undefined } ;
+    }
+    else
+    {
+      newData = { ...data, [inputs.grade]: tempArr } ;
+    }
+
+    setData(newData) ;
+
+    // Add Student
+    tempArr = data[inputs.newClass] ;
+
+    tempArr.push(inputs.name) ;
+    tempArr.sort() ;
+
+    newData = { ...data, [inputs.newClass!]: tempArr } ;
+
+    setData(newData) ;
+  }
+
+  // Promote
+  async function promote(next: boolean): Promise<void>
+  {
+    setMessage("") ;
+
+    if (checkInput(inputs.grade, 50) &&
+    checkInput(inputs.name, 50, "^[a-zA-Z].*[\s\.]*$") &&
+    checkInput(inputs.father, 50, "^[a-zA-Z].*[\s\.]*$") &&
+    checkInput(inputs.reg, 50) &&
+    checkNumber(inputs.fees) &&
+    checkNumber(inputs.arrears))
+    {
+      let index: number = grades.indexOf(inputs.grade) ;
+
+      if (next)
+      {
+        if (index < 8)
+        {
+          inputs.newClass = grades[index + 1] ;
+          let res: Res = await postAPI("/api/student/promote", inputs) ;
+
+          if (res.code === 100)
+          {
+            setWarn(false) ;
+
+            changeData() ;
+          }
+          else
+          {
+            setWarn(true) ;
+          }
+  
+          setInputs(studentObj2) ;
+          setStudents(undefined) ;
+          setMessage(res.message) ;
+        }
+        else
+        {
+          setWarn(true) ;
+          setMessage("Class VII Not Available!") ;
+        }
+      }
+      else
+      {
+        if (index > 0)
+        {
+          inputs.newClass = grades[index - 1] ;
+          let res: Res = await postAPI("/api/student/promote", inputs) ;
+
+          if (res.code === 100)
+          {
+            setWarn(false) ;
+
+            changeData() ;
+          }
+          else
+          {
+            setWarn(true) ;
+          }
+  
+          setInputs(studentObj2) ;
+          setStudents(undefined) ;
+          setMessage(res.message) ;
+        }
+        else
+        {
+          setWarn(true) ;
+          setMessage("Day Care Not Available!") ;
+        }
+      }
+    }
+  }
+
   return (
   <>
     <Head>
@@ -295,8 +400,10 @@ function Edit(props: Props): JSX.Element
           </>
           }
 
-            <div className="d-flex justify-content-center align-items-center text-center">
+            <div className="d-flex justify-content-evenly align-items-center text-center">
+              <button onClick={ () => promote(true) } type="button" className="d-flex justify-content-center align-items-center minorBtn"> Promote </button>
               <button onClick={ send } type="button" className="d-flex justify-content-center align-items-center mainBtn"> Submit </button>
+              <button onClick={ () => promote(false) } type="button" className="d-flex justify-content-center align-items-center minorBtn"> Demote </button>
             </div>
 
           </form>

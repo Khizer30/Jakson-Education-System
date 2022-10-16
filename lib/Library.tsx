@@ -10,6 +10,7 @@ interface Student
   fees: number  ;
   arrears: number ;
   date?: string ;
+  newClass?: string ;
 }
 
 // Student Object
@@ -32,7 +33,8 @@ const studentObj2: Student =
   grade: "NULL",
   fees: 0,
   arrears: 0,
-  date: getDate("date")
+  date: getDate("date"),
+  newClass: ""
 } ;
 
 // Remove Request Interface
