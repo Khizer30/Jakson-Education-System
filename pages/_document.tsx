@@ -16,6 +16,16 @@ function Document(): JSX.Element
       
         <link rel="icon" type="image/x-icon" href="/images/favicon.webp" />
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp" />
+
+        <meta name="application-name" content="JES Portal" />
+        <meta name="description" content="Jakson Education System Portal" />
+
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#282D3C" />
+
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-tap-highlight" content="no" />
       </Head>
 
       <body>

@@ -1,4 +1,9 @@
 /* Navbar */
+.navbar
+{
+  min-height: 10vh ;
+}
+
 .navToggle 
 {
   color: transparent !important ;
@@ -501,6 +506,6 @@ a:hover
 
 .dashboardContainer 
 {
-  min-height: 77.5vh ;
+  min-height: 80vh ;
   background: rgb(250,150,30) ;
 }
