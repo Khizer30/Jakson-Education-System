@@ -20,3 +20,10 @@ next-env.d.ts
 
 # extra
 /Extra
+
+# pwa
+fallback-development.js
+sw.js
+sw.js.map
+workbox-eac1af49.js
+workbox-eac1af49.js.map
