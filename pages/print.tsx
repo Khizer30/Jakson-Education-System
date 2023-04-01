@@ -183,6 +183,7 @@ function Print(props: Props): JSX.Element
         due: getDate("due", inputs.date),
         month: getDate("month", inputs.date),
         fees: inputs.fees,
+        discount: Math.floor((4000 - inputs.fees) / 40),
         arrears: inputs.arrears,
         total: total,
         feeName: feeName
